@@ -4,6 +4,8 @@ on:
   - push
 jobs:
   hello:
+    environment:
+      name: stage
     runs-on: ubuntu-slim
     steps:
     - shell: bash
