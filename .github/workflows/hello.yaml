@@ -18,4 +18,4 @@ jobs:
         echo "Event Name: ${EVENT_NAME}"
         echo "target env: ${TARGET_ENV}"
         echo "env secret: ${TARGET_ENV_SECRET}"
-        echo: "GITHUB_REF: ${GITHUB_REF}"
+        echo "GITHUB_REF: ${GITHUB_REF}"
