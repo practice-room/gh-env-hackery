@@ -12,7 +12,9 @@ jobs:
       env:
         EVENT_NAME: ${{ github.event_name }}
         TARGET_ENV: ${{ vars.TARGET_ENVIRONMENT }}
+        TARGET_ENV_SECRET: ${{ github.env.SOME_SECRET != '' && 'is set' || 'is not set' }}
       run: |
         echo "Hello"
         echo "Event Name: ${EVENT_NAME}"
         echo "target env: ${TARGET_ENV}"
+        echo "env secret: ${TARGET_ENV_SECRET}"
