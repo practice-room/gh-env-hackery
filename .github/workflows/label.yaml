@@ -1,4 +1,5 @@
 on:
+  workflow_call:
   pull_request_target:
     types:
       - labeled
@@ -17,3 +18,15 @@ jobs:
           echo "REF>> ${REF}"
           echo "BASE>> ${BASE}"
           echo "HEAD>> ${HEAD}"
+  clone-ref:
+    runs-on: ubuntu-slim
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # insecure clone of contributor content
+          ref: ${{ github.event.pull_request.head.sha }}
+          path: local_clone
+      - run: cat local_clone/.github/workflows/label.yaml
+      - uses: ./local_clone/.github/workflows/label.yaml
+
+
