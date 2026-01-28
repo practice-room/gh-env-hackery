@@ -17,3 +17,4 @@ jobs:
           echo "REF>> ${REF}"
           echo "BASE>> ${BASE}"
           echo "HEAD>> ${HEAD}"
+          echo "not the default branch"
