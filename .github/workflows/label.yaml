@@ -29,6 +29,6 @@ jobs:
       - run: |
           tree local_clone/.github
           cat local_clone/.github/workflows/actions/example/action.yaml
-      - uses: ./local_clone/.github/workflows/actions/example/action.yaml
+      - uses: ./local_clone/.github/workflows/actions/example
 
 
