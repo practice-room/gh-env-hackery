@@ -19,4 +19,3 @@ jobs:
           echo "BASE>> ${BASE}"
           echo "HEAD>> ${HEAD}"
           echo "not the default branch"
-          echo "definitely not the default branch"
