@@ -12,23 +12,26 @@ jobs:
         env:
           REF: ${{ github.ref }}
           BASE: ${{ github.event.pull_request.base.sha }}
+          BASE_REF: ${{ github.event.pull_request_head.ref }}
           HEAD: ${{ github.event.pull_request.head.sha }}
+          HEAD_REF: ${{ github.event.pull_request.head.ref }}
         run: |
           echo "Hello World"
           echo "REF>> ${REF}"
-          echo "BASE>> ${BASE}"
-          echo "HEAD>> ${HEAD}"
+          echo "BASE>> ${BASE} ${BASE_REF}"
+          echo "HEAD>> ${HEAD} ${HEAD_REF}"
   clone-ref:
     runs-on: ubuntu-slim
     steps:
       - uses: actions/checkout@v4
         with:
-          # insecure clone of contributor content
-          ref: ${{ github.event.pull_request.head.sha }}
+          # insecure clone by using ref
+          ref: ${{ github.event.pull_request.base.ref }}
           path: local_clone
       - run: |
           tree local_clone/.github
           cat local_clone/.github/workflows/actions/example/action.yaml
+          git ref-parse HEAD
       - uses: ./local_clone/.github/workflows/actions/example
 
 
