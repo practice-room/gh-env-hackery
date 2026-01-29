@@ -25,12 +25,25 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          # insecure clone by using ref
+          # Typically, we want to pull via base.sha instead of base.ref.
+          # However, for whatever reason, we see base.sha falls behind if
+          # changes are made to the base_branch after the pull request is
+          # created.
+          #
+          # If the pull request is amended (even with no change, not even a
+          # rebase), this updates the base.sha value, but until new content is
+          # pushed to the head branch, base.sha seems pinned.
+          #
+          # Using base.ref allows us to pull the content at the time of the action run. 
+          # For testing, this may not be a problem at all, but we do we want to be
+          # sure we're using the latest content in the base branch for all testing.
           ref: ${{ github.event.pull_request.base.ref }}
           path: local_clone
       - run: |
           tree local_clone/.github
           cat local_clone/.github/workflows/actions/example/action.yaml
+
+      - run: |
           cd local_clone; git rev-parse HEAD; cd ..
       - uses: ./local_clone/.github/workflows/actions/example
 
