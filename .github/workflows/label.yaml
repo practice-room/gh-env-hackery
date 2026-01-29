@@ -31,7 +31,7 @@ jobs:
       - run: |
           tree local_clone/.github
           cat local_clone/.github/workflows/actions/example/action.yaml
-          git ref-parse HEAD
+          git rev-parse HEAD
       - uses: ./local_clone/.github/workflows/actions/example
 
 
