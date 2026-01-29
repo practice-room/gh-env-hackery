@@ -26,7 +26,9 @@ jobs:
           # insecure clone of contributor content
           ref: ${{ github.event.pull_request.head.sha }}
           path: local_clone
-      - run: cat local_clone/.github/workflows/actions/example/action.yaml
+      - run: |
+          tree local_clone/.github
+          cat local_clone/.github/workflows/actions/example/action.yaml
       - uses: ./local_clone/.github/workflows/actions/example/action.yaml
 
 
