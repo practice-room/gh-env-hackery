@@ -12,7 +12,7 @@ jobs:
         env:
           REF: ${{ github.ref }}
           BASE: ${{ github.event.pull_request.base.sha }}
-          BASE_REF: ${{ github.event.pull_request_head.ref }}
+          BASE_REF: ${{ github.event.pull_request.base.ref }}
           HEAD: ${{ github.event.pull_request.head.sha }}
           HEAD_REF: ${{ github.event.pull_request.head.ref }}
         run: |
