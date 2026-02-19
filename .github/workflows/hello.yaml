@@ -4,18 +4,15 @@ on:
   - push
 jobs:
   hello:
-    environment:
-      name: stage
     runs-on: ubuntu-slim
     steps:
     - shell: bash
       env:
-        EVENT_NAME: ${{ github.event_name }}
-        TARGET_ENV: ${{ vars.TARGET_ENVIRONMENT }}
-        TARGET_ENV_SECRET: ${{ secrets.SOME_SECRET != '' && 'is set' || 'is not set' }}
+        HACKERY_EVENT_NAME: ${{ github.event_name }}
+        HACKER_BASE_REF: ${{ github.event.pull_request.base.ref }}
+        HACKERY_BASE_SHA: ${{ github.event.pull_request.base.sha}}
+        HACKERY_HEAD_REF: ${{ github.event.pull_request.head.ref }}
+        HACKERY_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
       run: |
-        echo "Hello"
-        echo "Event Name: ${EVENT_NAME}"
-        echo "target env: ${TARGET_ENV}"
-        echo "env secret: ${TARGET_ENV_SECRET}"
-        echo "GITHUB_REF: ${GITHUB_REF}"
+        printenv | grep HACKERY_
+        
