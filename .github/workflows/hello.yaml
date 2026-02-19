@@ -9,10 +9,10 @@ jobs:
     - shell: bash
       env:
         HACKERY_EVENT_NAME: ${{ github.event_name }}
-        HACKERY_BASE_REF: ${{ github.event.pull_request.base.ref }}
-        HACKERY_BASE_SHA: ${{ github.event.pull_request.base.sha}}
-        HACKERY_HEAD_REF: ${{ github.event.pull_request.head.ref }}
-        HACKERY_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        HACKERY_REF_NAME: ${{ github.ref_name }}
+        HACKERY_TOP_LEVEL_HEAD_REF: ${{ github.head_ref }}
+        HACKERY_TOP_LEVEL_BASE_REF: ${{ github.base_ref }}
+        FULL_PR: ${{ toJSON(github.event.pull_request) }}
       run: |
         printenv | grep HACKERY_
-        
+        echo "${FULL_PR}" | jq
