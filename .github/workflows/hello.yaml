@@ -9,7 +9,7 @@ jobs:
     - shell: bash
       env:
         HACKERY_EVENT_NAME: ${{ github.event_name }}
-        HACKER_BASE_REF: ${{ github.event.pull_request.base.ref }}
+        HACKERY_BASE_REF: ${{ github.event.pull_request.base.ref }}
         HACKERY_BASE_SHA: ${{ github.event.pull_request.base.sha}}
         HACKERY_HEAD_REF: ${{ github.event.pull_request.head.ref }}
         HACKERY_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
